@@ -33,7 +33,11 @@
 
 - [x] 1일차: 프로젝트 기획 및 개발 환경 세팅
 
-- [ ] 2일차: FastAPI 서버 구축 및 Gemini API 연결
+- [x] 2일차: FastAPI 서버 구축 및 Gemini API 연결
+    - FastAPI `/health`, `/jobs`, `/analyze` 엔드포인트 구현
+    - Python 개발 환경 설정 및 백엔드 구조 구축
+    - Gemini 2.5 Flash-Lite API 연결
+    - 환경변수 기반 mock mode 설정
 
 - [ ] 3일차: 데이터 파이프라인 구축
 
