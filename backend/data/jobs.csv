@@ -1,4 +1,4 @@
-﻿company,title,required_skills,preferred_skills,description,jop_type,deadline
+﻿company,title,required_skills,preferred_skills,description,job_type,deadline
 마켓브릿지(MarketBridge),커머스 프로덕트 데이터 분석가,"SQL, Python(Pandas, Numpy), 가설 검정 및 통계적 분석 능력","A/B 테스트 설계 경험, Tableau/Looker 대시보드 구축 경험, 이커머스 도메인 지식","고객의 구매 여정(funnel)을 분석하여 구매 전환율을 최적화하고, 주요 서비스 지표(Retention, LTV)를 모니터링 하여 프로덕트 개선을 위한 인사이트를 도출합니다.",정규직,2026-08-31
 넥스트플래닛(NextPlanet),게임 로그 데이터 분석가,"SQL, Python, 데이터 시각화(Matplotlib, Seaborn), 데이터 핸들링 및 전처리","게임 산업에 대한 이해, 머신러닝 기초 모델링 경험, 대용량 로그 데이터 처리(Spark 등) 경험",게임 내 유저들의 행동 로그를 추출 및 가공하여 게임 밸런스 조정 및 이탈 방지 전략을 수립합니다. 실시간 지표 대시보드를 운영하고 비즈니스 의사결정을 지원합니다.,정규직,2026-09-15
 스마트뱅크(SmartBank),금융 마케팅 데이터 분석가,"SQL, R 또는 Python, 통계적 모델링(회귀분석, 시계열 분석), 보고서 작성 능력","마케팅 성과 측적 분석 경험, 금융 도메인 지식, GA4 활용 역량",카드 사용 패턴 및 금융 앱 행동 로그를 분석하여 고객 세그먼트를 분류합니다. 개인화 마케팅 캠페인의 성과를 측정하고 최적화 방안을 제안합니다.,계약직(인턴 후 정규직 전환 평가),2026-08-15

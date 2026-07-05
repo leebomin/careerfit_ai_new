@@ -2,9 +2,7 @@
 
 # 데이터 전처리 파이프라인
 
-# 실행: backend/ 폴더에서 실행
-
-python data/preprocess.py
+# 실행: backend/ 폴더에서 실행 python data/preprocess.py
 
 import pandas as pd
 
@@ -59,20 +57,6 @@ def load_data(filepath: str) -> pd.DataFrame:
     return df
 
 
-
-# 실행 테스트
-
-if __name__ == "__main__":
-
- df_jobs = load_data(JOBS_CSV)
-
- print()
-
- print("=== 처음 3행 미리보기 ===")
-
- print(df_jobs.head(3).to_string())
-
-
 #빈 값과 중복 확인
 def check_missing(df: pd.DataFrame) -> pd.DataFrame:
 
@@ -109,6 +93,71 @@ def check_missing(df: pd.DataFrame) -> pd.DataFrame:
         print(f"   ⚠️  총 {missing.sum()}개 결측치 발견")
 
     return df
+
+#결측치 처리 함수 추가
+def handle_missing(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    결측치를 처리합니다.
+    - 텍스트 컬럼: 빈 문자열로 채웁니다
+    - 핵심 컬럼이 비어있는 행은 제거합니다
+    """
+    print("\n=== 결측치 처리 ===")
+    before = len(df)
+
+    # 핵심 컬럼(title, required_skills)이 비어있는 행 제거
+    # 이 정보가 없으면 RAG 검색에 의미가 없기 때문입니다
+    df = df.dropna(subset=["title", "required_skills"])
+
+    # 나머지 텍스트 컬럼은 빈 문자열로 채웁니다
+    text_cols = ["preferred_skills", "description", "company", "job_type"]
+    for col in text_cols:
+        if col in df.columns:
+            df[col] = df[col].fillna("")
+
+    after = len(df)
+    print(f"   처리 전: {before}행 → 처리 후: {after}행")
+    print(f"   제거된 행: {before - after}행")
+    return df
+
+#중복 확인 및 제거 함수 추가
+def remove_duplicates(df: pd.DataFrame) -> pd.DataFrame:
+
+    """
+
+    중복 행을 확인하고 제거합니다.
+
+    company + title 조합이 같으면 중복으로 판단합니다.
+
+    """
+
+    print("\n=== 중복 확인 ===")
+
+    before = len(df)
+
+    # company + title 기준으로 중복 확인
+
+    duplicated = df.duplicated(subset=["company", "title"], keep=False)
+
+    if duplicated.sum() > 0:
+
+        print(f"   ⚠️  중복 발견: {duplicated.sum()}행")
+
+        print(df[duplicated][["company", "title"]])
+
+    else:
+
+        print("   ✅ 중복 없음")
+
+    # 첫 번째 행만 남기고 중복 제거
+
+    df = df.drop_duplicates(subset=["company", "title"], keep="first")
+
+    after = len(df)
+
+    print(f"   제거 후: {after}행 (제거: {before - after}행)")
+
+    return df
+
 
 
 # 표준화 사전: 왼쪽 → 오른쪽으로 변환합니다
@@ -229,6 +278,7 @@ def save_to_sqlite(df: pd.DataFrame, db_path: str) -> None:
     conn.close()
 
 
+
 #SQLite에서 조회
 def query_sqlite(db_path: str) -> None:
     """
@@ -266,3 +316,13 @@ def query_sqlite(db_path: str) -> None:
         print(f"     스킬: {row[2]}")
 
     conn.close()
+
+if __name__ == "__main__":
+    df_jobs = load_data(JOBS_CSV)
+    df_jobs = check_missing(df_jobs)
+    df_jobs = handle_missing(df_jobs)
+    df_jobs = remove_duplicates(df_jobs)
+    df_jobs = standardize_skills(df_jobs)
+    save_to_sqlite(df_jobs, DB_PATH)
+    query_sqlite(DB_PATH)                   # ← 추가
+    print(f"\n✅ 전처리 완료: 최종 {len(df_jobs)}행")
