@@ -1,0 +1,56 @@
+[
+  {
+    "company": "마켓브릿지(MarketBridge)",
+    "title": "커머스 프로덕트 데이터 분석가",
+    "required_skills": "SQL, Python(Pandas, Numpy), 가설 검정 및 통계적 분석 능력",
+    "preferred_skills": "A/B 테스트 설계 경험, Tableau/Looker 대시보드 구축 경험, 이커머스 도메인 지식",
+    "description": "고객의 구매 여정(funnel)을 분석하여 구매 전환율을 최적화하고, 주요 서비스 지표(Retention, LTV)를 모니터링 하여 프로덕트 개선을 위한 인사이트를 도출합니다.",
+    "job_type": "정규직",
+    "deadline": "2026-08-31"
+  },
+  {
+    "company": "넥스트플래닛(NextPlanet)",
+    "title": "게임 로그 데이터 분석가",
+    "required_skills": "SQL, Python, 데이터 시각화(Matplotlib, Seaborn), 데이터 핸들링 및 전처리",
+    "preferred_skills": "게임 산업에 대한 이해, 머신러닝 기초 모델링 경험, 대용량 로그 데이터 처리(Spark 등) 경험",
+    "description": "게임 내 유저들의 행동 로그를 추출 및 가공하여 게임 밸런스 조정 및 이탈 방지 전략을 수립합니다. 실시간 지표 대시보드를 운영하고 비즈니스 의사결정을 지원합니다.",
+    "job_type": "정규직",
+    "deadline": "2026-09-15"
+  },
+  {
+    "company": "스마트뱅크(SmartBank)",
+    "title": "금융 마케팅 데이터 분석가",
+    "required_skills": "SQL, R 또는 Python, 통계적 모델링(회귀분석, 시계열 분석), 보고서 작성 능력",
+    "preferred_skills": "마케팅 성과 측적 분석 경험, 금융 도메인 지식, GA4 활용 역량",
+    "description": "카드 사용 패턴 및 금융 앱 행동 로그를 분석하여 고객 세그먼트를 분류합니다. 개인화 마케팅 캠페인의 성과를 측정하고 최적화 방안을 제안합니다.",
+    "job_type": "계약직(인턴 후 정규직 전환 평가)",
+    "deadline": "2026-08-15"
+  },
+  {
+    "company": "페이솔루션(PaySolution)",
+    "title": "이상거래탐지(FDS) 및 결제 데이터 분석가",
+    "required_skills": "SQL, Python(Scikit-learn), 통계학 기반 이상치 탐지 기법",
+    "preferred_skills": "금융 보안/결제 도메인 경험, 대용량 트랜잭션 처리 경험, Rule-based 시스템 운영 경험",
+    "description": "실시간 결제 데이터를 모니터링하여 부정 결제 패턴을 식별하고, 이상거래탐지 모델의 성능을 고도화합니다. 오탐(False Positive)을 최소화하여 결제 사용자 경험을 개선하는 역할을 수행합니다.",
+    "job_type": "정규직",
+    "deadline": "2026-09-30"
+  },
+  {
+    "company": "고고모빌리티(GoGo Mobility)",
+    "title": "지리공간(GIS) 데이터 분석가",
+    "required_skills": "SQL, Python(Geopandas, Shapely), 공간 통계 분석 역량",
+    "preferred_skills": "위치 데이터(GPS) 분석 경험, 시각화 도구(Leaflet, Kepler.gl) 활용 능력, R 사용 가능자",
+    "description": "차량 호출 서비스의 이동 로그를 분석하여 수요 밀집 지역을 예측하고, 최적의 차량 배치 및 요금 정책 수립을 위한 공간 인사이트를 제공합니다.",
+    "job_type": "정규직",
+    "deadline": "2026-10-15"
+  },
+  {
+    "company": "애드타겟(AdTarget)",
+    "title": "광고 성과 최적화 데이터 분석가",
+    "required_skills": "SQL, 데이터 모델링, Python(Pandas, SciPy), 대시보드 설계(Looker Studio 등)",
+    "preferred_skills": "매체사 API 활용 경험, 광고 성과 지표(ROAS, CPC, CTR) 분석 경험, 베이지안 통계 지식",
+    "description": "다양한 광고 매체로부터 들어오는 대규모 캠페인 성과 데이터를 통합 분석합니다. 광고 효율을 극대화할 수 있는 타겟팅 전략을 수립하고 자동화된 리포팅 파이프라인을 구축합니다.",
+    "job_type": "정규직",
+    "deadline": "2026-09-20"
+  }
+]

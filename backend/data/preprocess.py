@@ -317,6 +317,15 @@ def query_sqlite(db_path: str) -> None:
 
     conn.close()
 
+# RAG용 JSON 파일로 저장하는 함수
+def save_to_json_for_rag(df: pd.DataFrame, json_path: str) -> None:
+    print("\n=== RAG용 JSON 파일 생성 ===")
+    documents = df.to_dict(orient="records")
+    with open(json_path, 'w', encoding='utf-8') as f:
+        json.dump(documents, f, ensure_ascii=False, indent=2)
+    print(f"   ✅ RAG 문서 변환 완료: {len(documents)}개 저장됨")
+    print(f"   파일 위치: {json_path}")
+
 if __name__ == "__main__":
     df_jobs = load_data(JOBS_CSV)
     df_jobs = check_missing(df_jobs)
@@ -324,5 +333,7 @@ if __name__ == "__main__":
     df_jobs = remove_duplicates(df_jobs)
     df_jobs = standardize_skills(df_jobs)
     save_to_sqlite(df_jobs, DB_PATH)
-    query_sqlite(DB_PATH)                   # ← 추가
+    query_sqlite(DB_PATH)
+    save_to_json_for_rag(df_jobs, RAG_JSON)
+    
     print(f"\n✅ 전처리 완료: 최종 {len(df_jobs)}행")
