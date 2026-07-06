@@ -317,6 +317,8 @@ def query_sqlite(db_path: str) -> None:
 
     conn.close()
 
+from datetime import date
+
 # RAG 문서로 변환, RAG용 JSON 파일로 저장하는 함수
 def convert_to_rag_documents(df: pd.DataFrame) -> list:
     """
@@ -337,14 +339,22 @@ def convert_to_rag_documents(df: pd.DataFrame) -> list:
             f"업무 내용: {row.get('description', '정보 없음')}"
         )
 
-        # metadata: 검색 결과를 필터링하거나 출처를 표시할 때 사용합니다
+        # [요청 반영] metadata 바로 위에 변수 선언 추가
+        deadline = str(row.get("deadline", ""))
+        company = str(row.get("company", ""))
+
+        # [요청 반영] 기존 metadata 구조를 교재 가이드라인 버전으로 업데이트
         metadata = {
             "id": str(row.get("id", "")),
-            "company": str(row.get("company", "")),
+            "company": company,
             "title": str(row.get("title", "")),
             "job_type": str(row.get("job_type", "")),
-            "deadline": str(row.get("deadline", "")),
-            "source": "jobs.csv"
+            "deadline": deadline,
+            "source": "jobs.csv",
+
+            "deadline_month": deadline[5:7] if len(deadline) >= 7 and deadline[4] == "-" else "",
+            "is_startup": "true" if "스타트업" in company else "false",
+            "first_saved_date": date.today().isoformat()
         }
 
         documents.append({
