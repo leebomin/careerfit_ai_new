@@ -323,9 +323,6 @@ from datetime import date
 def convert_to_rag_documents(df: pd.DataFrame) -> list:
     """
     DataFrame의 각 행을 RAG 검색에 적합한 자연어 문서로 변환합니다.
-
-    요리 비유:
-    냉장고의 재료 목록을 셰프가 바로 읽을 수 있는 레시피 카드로 변환합니다.
     """
     print("\n=== RAG 문서 변환 ===")
     documents = []
@@ -339,11 +336,26 @@ def convert_to_rag_documents(df: pd.DataFrame) -> list:
             f"업무 내용: {row.get('description', '정보 없음')}"
         )
 
-        # [요청 반영] metadata 바로 위에 변수 선언 추가
-        deadline = str(row.get("deadline", ""))
+        deadline = str(row.get("deadline", "")).strip()
         company = str(row.get("company", ""))
 
-        # [요청 반영] 기존 metadata 구조를 교재 가이드라인 버전으로 업데이트
+        # 마감월 추출 방어코드 고도화
+        deadline_month = ""
+        if deadline:
+            if "-" in deadline and len(deadline.split("-")) >= 2:
+                deadline_month = deadline.split("-")[1]
+            elif "." in deadline and len(deadline.split(".")) >= 2:
+                deadline_month = deadline.split(".")[1]
+        
+        if deadline_month and len(deadline_month) == 1:
+            deadline_month = f"0{deadline_month}"
+
+        # company_type 판별 로직 추가
+        company_type = str(row.get("company_type", "")).lower()
+        is_startup_str = "true" if "스타트업" in company or company_type == "startup" else "false"
+        first_saved_date_str = str(row.get("first_saved_date", date.today().isoformat()))
+
+        # metadata 구조 업데이트
         metadata = {
             "id": str(row.get("id", "")),
             "company": company,
@@ -351,16 +363,15 @@ def convert_to_rag_documents(df: pd.DataFrame) -> list:
             "job_type": str(row.get("job_type", "")),
             "deadline": deadline,
             "source": "jobs.csv",
-
-            "deadline_month": deadline[5:7] if len(deadline) >= 7 and deadline[4] == "-" else "",
-            "is_startup": "true" if "스타트업" in company else "false",
-            "first_saved_date": date.today().isoformat()
+            "deadline_month": deadline_month,
+            "is_startup": is_startup_str,
+            "first_saved_date": first_saved_date_str
         }
 
         documents.append({
             "text": doc_text,
             "metadata": metadata,
-            "doc_id": f"job_{row.get('id', '')}"  # ChromaDB의 고유 ID
+            "doc_id": f"job_{row.get('id', '')}"
         })
 
     print(f"   ✅ {len(documents)}개 문서 변환 완료")

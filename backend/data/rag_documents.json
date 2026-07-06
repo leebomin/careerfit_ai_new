@@ -1,8 +1,188 @@
 [
   {
+    "text": "테크스타트업A에서 데이터 분석가를 채용합니다. 필수 스킬은 Python, SQL, 통계입니다. 우대 스킬: R, Tableau, 시각화. 업무 내용: 사용자 행동 데이터를 분석해 비즈니스 인사이트를 도출합니다. A/B 테스트 설계 및 결과 해석 업무를 담당합니다.",
+    "metadata": {
+      "id": "1",
+      "company": "테크스타트업A",
+      "title": "데이터 분석가",
+      "job_type": "데이터 분석",
+      "deadline": "2026-08-31",
+      "source": "jobs.csv",
+      "deadline_month": "08",
+      "is_startup": "true",
+      "first_saved_date": "2026-07-01"
+    },
+    "doc_id": "job_1"
+  },
+  {
+    "text": "금융서비스B에서 데이터 엔지니어를 채용합니다. 필수 스킬은 Python, Spark, SQL입니다. 우대 스킬: Kafka, Airflow, AWS. 업무 내용: 대용량 금융 거래 데이터 파이프라인을 설계하고 운영합니다. ETL 프로세스 개발 및 데이터 품질 관리를 담당합니다.",
+    "metadata": {
+      "id": "2",
+      "company": "금융서비스B",
+      "title": "데이터 엔지니어",
+      "job_type": "데이터 엔지니어링",
+      "deadline": "2026-09-15",
+      "source": "jobs.csv",
+      "deadline_month": "09",
+      "is_startup": "false",
+      "first_saved_date": "2026-07-01"
+    },
+    "doc_id": "job_2"
+  },
+  {
+    "text": "AI솔루션C에서 머신러닝 엔지니어를 채용합니다. 필수 스킬은 Python, PyTorch, 딥러닝입니다. 우대 스킬: TensorFlow, CUDA, MLOps. 업무 내용: AI 모델 개발 및 서비스 배포를 담당합니다. 자연어 처리 및 컴퓨터 비전 프로젝트에 참여합니다.",
+    "metadata": {
+      "id": "3",
+      "company": "AI솔루션C",
+      "title": "머신러닝 엔지니어",
+      "job_type": "AI/ML",
+      "deadline": "2026-08-20",
+      "source": "jobs.csv",
+      "deadline_month": "08",
+      "is_startup": "true",
+      "first_saved_date": "2026-07-01"
+    },
+    "doc_id": "job_3"
+  },
+  {
+    "text": "커머스E에서 데이터 분석가를 채용합니다. 필수 스킬은 SQL, Python, 엑셀입니다. 우대 스킬: Looker, 통계분석, A/B테스트. 업무 내용: 이커머스 판매 및 고객 행동 데이터를 분석해 마케팅 전략 수립을 지원합니다.",
+    "metadata": {
+      "id": "5",
+      "company": "커머스E",
+      "title": "데이터 분석가",
+      "job_type": "데이터 분석",
+      "deadline": "2026-08-31",
+      "source": "jobs.csv",
+      "deadline_month": "08",
+      "is_startup": "true",
+      "first_saved_date": "2026-07-01"
+    },
+    "doc_id": "job_5"
+  },
+  {
+    "text": "헬스케어F에서 AI 연구원를 채용합니다. 필수 스킬은 Python, 머신러닝, 논문 작성입니다. 우대 스킬: NLP, 컴퓨터 비전, PyTorch. 업무 내용: 의료 데이터 기반 AI 모델을 연구·개발합니다. 논문 작성 및 학회 발표 경험자를 우대합니다.",
+    "metadata": {
+      "id": "6",
+      "company": "헬스케어F",
+      "title": "AI 연구원",
+      "job_type": "AI/ML",
+      "deadline": "2026-09-01",
+      "source": "jobs.csv",
+      "deadline_month": "09",
+      "is_startup": "true",
+      "first_saved_date": "2026-07-01"
+    },
+    "doc_id": "job_6"
+  },
+  {
+    "text": "컨설팅G에서 경영전략 컨설턴트를 채용합니다. 필수 스킬은 Excel, PowerPoint, 데이터분석입니다. 우대 스킬: MBA, SQL, Tableau. 업무 내용: 기업 전략 수립 및 운영 효율화 프로젝트를 수행합니다. 데이터 기반 의사결정을 지원합니다.",
+    "metadata": {
+      "id": "7",
+      "company": "컨설팅G",
+      "title": "경영전략 컨설턴트",
+      "job_type": "경영전략",
+      "deadline": "2026-10-15",
+      "source": "jobs.csv",
+      "deadline_month": "10",
+      "is_startup": "false",
+      "first_saved_date": "2026-07-01"
+    },
+    "doc_id": "job_7"
+  },
+  {
+    "text": "물류H에서 공급망 분석가를 채용합니다. 필수 스킬은 SQL, Python, 물류 도메인입니다. 우대 스킬: ERP, SCM, R. 업무 내용: 물류 네트워크 최적화 및 수요 예측 모델을 개발합니다. 물류·유통 도메인 이해 필수입니다.",
+    "metadata": {
+      "id": "8",
+      "company": "물류H",
+      "title": "공급망 분석가",
+      "job_type": "데이터 분석",
+      "deadline": "2026-08-15",
+      "source": "jobs.csv",
+      "deadline_month": "08",
+      "is_startup": "true",
+      "first_saved_date": "2026-07-01"
+    },
+    "doc_id": "job_8"
+  },
+  {
+    "text": "바이오J에서 생물정보학 연구원를 채용합니다. 필수 스킬은 R, Python, 바이오인포데이터틱스입니다. 우대 스킬: BLAST, NGS, 리눅스. 업무 내용: 유전체 데이터 분석 파이프라인을 개발합니다. 생물정보학 관련 석사 이상 우대합니다.",
+    "metadata": {
+      "id": "10",
+      "company": "바이오J",
+      "title": "생물정보학 연구원",
+      "job_type": "연구개발",
+      "deadline": "2026-07-01",
+      "source": "jobs.csv",
+      "deadline_month": "07",
+      "is_startup": "true",
+      "first_saved_date": "nan"
+    },
+    "doc_id": "job_10"
+  },
+  {
+    "text": "스타트업K에서 프론트엔드 개발자를 채용합니다. 필수 스킬은 JavaScript, React, HTML/CSS입니다. 우대 스킬: TypeScript, Next.js, Figma. 업무 내용: 사용자 경험 중심의 프론트엔드 서비스를 개발합니다. 디자인 협업 경험 우대.",
+    "metadata": {
+      "id": "11",
+      "company": "스타트업K",
+      "title": "프론트엔드 개발자",
+      "job_type": "프론트엔드 개발",
+      "deadline": "2026-07-01",
+      "source": "jobs.csv",
+      "deadline_month": "07",
+      "is_startup": "true",
+      "first_saved_date": "nan"
+    },
+    "doc_id": "job_11"
+  },
+  {
+    "text": "금융L에서 리스크 분석가를 채용합니다. 필수 스킬은 Python, 통계, 금융공학입니다. 우대 스킬: VBA, Bloomberg, SQL. 업무 내용: 금융 리스크 모델을 개발하고 규제 보고서를 작성합니다. CFA 또는 FRM 자격증 우대.",
+    "metadata": {
+      "id": "12",
+      "company": "금융L",
+      "title": "리스크 분석가",
+      "job_type": "금융분석",
+      "deadline": "nan",
+      "source": "jobs.csv",
+      "deadline_month": "",
+      "is_startup": "false",
+      "first_saved_date": "2026-07-01"
+    },
+    "doc_id": "job_12"
+  },
+  {
+    "text": "공기업M에서 데이터 사이언티스트를 채용합니다. 필수 스킬은 Python, SQL, 머신러닝입니다. 우대 스킬: 딥러닝, 시각화, NLP. 업무 내용: 공공 서비스 개선을 위한 데이터 분석 및 AI 모델을 개발합니다. 공공 데이터 활용 경험 우대.",
+    "metadata": {
+      "id": "13",
+      "company": "공기업M",
+      "title": "데이터 사이언티스트",
+      "job_type": "데이터 분석",
+      "deadline": "2026-10-31",
+      "source": "jobs.csv",
+      "deadline_month": "10",
+      "is_startup": "false",
+      "first_saved_date": "2026-07-01"
+    },
+    "doc_id": "job_13"
+  },
+  {
+    "text": "게임N에서 게임 데이터 분석가를 채용합니다. 필수 스킬은 SQL, Python, 게임 도메인입니다. 우대 스킬: R, 행동분석, A/B테스트. 업무 내용: 게임 유저 행동 데이터를 분석하고 게임 밸런싱 및 수익화 전략을 지원합니다.",
+    "metadata": {
+      "id": "14",
+      "company": "게임N",
+      "title": "게임 데이터 분석가",
+      "job_type": "데이터 분석",
+      "deadline": "2026-09-30",
+      "source": "jobs.csv",
+      "deadline_month": "09",
+      "is_startup": "false",
+      "first_saved_date": "2026-07-01"
+    },
+    "doc_id": "job_14"
+  },
+  {
     "text": "네이버(NAVER)에서 네이버플레이스 프로덕트 데이터 분석가를 채용합니다. 필수 스킬은 SQL, Python, 가설 검정 및 통계적 분석 능력입니다. 우대 스킬: A/B 테스트 설계 및 사후 분석 경험, Tableau/Superset 등 대시보드 구축 경험, 유저 행동 데이터(Log) 분석 경험. 업무 내용: 네이버 플레이스 서비스의 유저 구매 여정 및 행동 패턴을 분석하여 전환율을 최적화하고, 주요 비즈니스 지표를 모니터링하여 프로덕트 개선 인사이트를 도출합니다.",
     "metadata": {
-      "id": "",
+      "id": "16",
       "company": "네이버(NAVER)",
       "title": "네이버플레이스 프로덕트 데이터 분석가",
       "job_type": "데이터 분석",
@@ -12,12 +192,12 @@
       "is_startup": "false",
       "first_saved_date": "2026-07-03"
     },
-    "doc_id": "job_"
+    "doc_id": "job_16"
   },
   {
     "text": "카카오게임즈(Kakao Games)에서 게임 라이브 로그 데이터 분석가를 채용합니다. 필수 스킬은 SQL, Python, 데이터 시각화(Matplotlib, Seaborn), 데이터 전처리 역량입니다. 우대 스킬: 게임 도메인 및 비즈니스에 대한 높은 이해도, 대용량 로그 데이터 처리(Spark, Hive) 경험, 머신러닝 기초 모델링 역량. 업무 내용: 라이브 게임 내 유저들의 행동 로그를 추출 및 분석하여 밸런스 조정, 컨텐츠 소비 속도 예측, 이탈 방지 전략을 수립하고 데이터 기반의 비즈니스 의사결정을 지원합니다.",
     "metadata": {
-      "id": "",
+      "id": "17",
       "company": "카카오게임즈(Kakao Games)",
       "title": "게임 라이브 로그 데이터 분석가",
       "job_type": "데이터 분석",
@@ -27,12 +207,12 @@
       "is_startup": "false",
       "first_saved_date": "2026-07-03"
     },
-    "doc_id": "job_"
+    "doc_id": "job_17"
   },
   {
     "text": "비바리퍼블리카(Toss)에서 토스페이먼츠 결제 데이터 분석가를 채용합니다. 필수 스킬은 SQL, Python 또는 R, 통계적 모델링(회귀분석 등), 데이터 리포팅 역량입니다. 우대 스킬: 금융/결제 도메인 지식, GA4 등 웹/앱 애널리틱스 활용 역량, 대규모 데이터 파이프라인 이해. 업무 내용: 토스페이먼츠 결제 서비스의 유저 행동 로그 및 거래 데이터를 분석하여 고객 세그먼트를 분류하고, 마케팅 캠페인의 성과 측정 및 결제 전환율 최적화 방안을 제안합니다.",
     "metadata": {
-      "id": "",
+      "id": "18",
       "company": "비바리퍼블리카(Toss)",
       "title": "토스페이먼츠 결제 데이터 분석가",
       "job_type": "데이터 분석",
@@ -42,12 +222,12 @@
       "is_startup": "false",
       "first_saved_date": "2026-07-03"
     },
-    "doc_id": "job_"
+    "doc_id": "job_18"
   },
   {
     "text": "카카오페이(Kakao Pay)에서 이상거래탐지(FDS) 데이터 분석가를 채용합니다. 필수 스킬은 SQL, Python(Scikit-learn), 통계학 기반 이상치 탐지 및 패턴 분석 역량입니다. 우대 스킬: 금융 보안/결제 시스템 운영 경험, 대용량 트랜잭션 데이터 처리 경험, Rule-based 탐지 시스템 고도화 경험. 업무 내용: 실시간 금융 결제 트랜잭션 데이터를 모니터링하여 부정 결제 및 이상 패턴을 식별하고, FDS 모델의 성능을 고도화하여 오탐을 최소화하고 결제 신뢰도를 높입니다.",
     "metadata": {
-      "id": "",
+      "id": "19",
       "company": "카카오페이(Kakao Pay)",
       "title": "이상거래탐지(FDS) 데이터 분석가",
       "job_type": "데이터 분석",
@@ -57,12 +237,12 @@
       "is_startup": "false",
       "first_saved_date": "2026-07-03"
     },
-    "doc_id": "job_"
+    "doc_id": "job_19"
   },
   {
     "text": "당근(Daangn)에서 지리공간(GIS) 기반 로컬 데이터 분석가를 채용합니다. 필수 스킬은 SQL, Python(Geopandas, Shapely), 공간 통계 및 군집 분석 역량입니다. 우대 스킬: 위치 데이터(GPS) 및 이동 로그 분석 경험, 시각화 도구(Kepler.gl, Leaflet) 활용 역량. 업무 내용: 당근 앱 내 중고거래 및 지역 서비스의 위치·이동 로그를 분석하여 로컬 수요 밀집 지역을 예측하고, 매칭 효율 극대화를 위한 지역 공간 인사이트를 제공합니다.",
     "metadata": {
-      "id": "",
+      "id": "20",
       "company": "당근(Daangn)",
       "title": "지리공간(GIS) 기반 로컬 데이터 분석가",
       "job_type": "데이터 분석",
@@ -72,12 +252,12 @@
       "is_startup": "false",
       "first_saved_date": "2026-07-03"
     },
-    "doc_id": "job_"
+    "doc_id": "job_20"
   },
   {
     "text": "네이버파이낸셜에서 광고 및 마케팅 성과 최적화 데이터 분석가를 채용합니다. 필수 스킬은 SQL, 데이터 모델링 역량, Python(Pandas, SciPy), 대시보드 설계(Looker Studio 등)입니다. 우대 스킬: 디지털 광고 성과 지표(ROAS, CPC, CTR) 분석 경험, 금융 상품 마케팅 경험, 베이지안 통계 지식. 업무 내용: 핀테크 서비스 내 광고 매체 및 금융 상품 캠페인 성과 데이터를 통합 분석합니다. 광고 효율을 극대화할 수 있는 타겟팅 전략을 수립하고 데이터 파이프라인을 구축합니다.",
     "metadata": {
-      "id": "",
+      "id": "21",
       "company": "네이버파이낸셜",
       "title": "광고 및 마케팅 성과 최적화 데이터 분석가",
       "job_type": "데이터 분석",
@@ -87,6 +267,6 @@
       "is_startup": "false",
       "first_saved_date": "2026-07-03"
     },
-    "doc_id": "job_"
+    "doc_id": "job_21"
   }
 ]

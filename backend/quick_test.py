@@ -1,10 +1,4 @@
 # backend/quick_test.py
-# backend/quick_test.py 맨 위에 추가
-import sys
-import os
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-
-# 기존 코드
 from services.rag_service import search_documents
 
 tests = [
