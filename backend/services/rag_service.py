@@ -52,29 +52,34 @@ def _load_documents(collection: chromadb.Collection) -> None:
     print(f"✅ {collection.count()}개 문서 저장 완료")
 
 
-def search_documents(query: str, n_results: int = 3) -> list:
+def search_documents(query: str, n_results: int = 3, job_type: str = None) -> list:
     """
-    사용자 질문과 의미적으로 유사한 문서를 ChromaDB에서 검색합니다.
+    사용자 질문과 의미적으로 유사한 문서를 ChromaDB에서 검색합니다. (메타데이터 필터링 지원)
 
     Args:
         query: 사용자 질문 텍스트
         n_results: 반환할 문서 수 (기본값 3)
-
-    Returns:
-        [{"text": str, "metadata": dict, "distance": float}, ...]
+        job_type: 필터링할 직무 유형 (예: "데이터 분석") -> 추가된 부분!
     """
     collection = get_or_create_collection()
     
     total_count = collection.count()
     if total_count == 0:
-        return []  # DB에 데이터가 없으면 즉시 빈 리스트 반환하여 IndexError 방지
+        return []
 
+    # 1. 메타데이터 필터(where) 조건 준비
+    where_filter = None
+    if job_type:
+        where_filter = {"job_type": job_type} # 만약 "데이터 분석"이 들어오면 {"job_type": "데이터 분석"} 이 됨
+
+    # 2. ChromaDB 쿼리 실행 (where 인자 추가)
     results = collection.query(
         query_texts=[query],
-        n_results=min(n_results, total_count)
+        n_results=min(n_results, total_count),
+        where=where_filter # -> 여기에 필터 딕셔너리를 꽂아줍니다!
     )
 
-    # 🔴 [보완] 결과가 비어있거나 검색 결과 리스트가 깨져있을 경우 방어 처리
+    # 결과가 비어있거나 검색 결과 리스트가 깨져있을 경우 방어 처리
     if not results or not results.get("documents") or not results["documents"][0]:
         return []
 
