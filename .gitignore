@@ -2,6 +2,7 @@
 .env
 .env.*
 !.env.example
+backend/.env
 
 # Python 실행 중 생기는 임시 파일들
 __pycache__/
@@ -9,6 +10,7 @@ __pycache__/
 *.pyo
 .venv/
 venv/
+pycache/
 
 # ChromaDB가 자동으로 만드는 폴더 (재생성 가능)
 backend/chroma_db/
