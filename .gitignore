@@ -31,3 +31,6 @@ ehthumbs.db
 ehthumbs_vista.db
 desktop.ini
 *.lnk
+
+# 개인 회고록
+docs/RETROSPECTIVE.md
