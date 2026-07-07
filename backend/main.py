@@ -12,7 +12,7 @@ app = FastAPI(
 )
 
 # CORS 동적 환경 변수 처리 고도화
-raw_origins = as.genetv("FONTEND_ORIGINS", "")
+raw_origins = os.genetv("FRONTEND_ORIGINS", "")
 if raw_origins:
     allowed_origins = [origin.strip() for origin in raw_origins.split(",") if origin.strip()]
 else:
