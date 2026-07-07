@@ -1,6 +1,11 @@
 // 프론트엔드 공통 API 설정 파일
 
-const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || "http://localhost:8000").replace(/\/$/, "");
+// 🟢 현재 켜진 창의 도메인을 보고 자동으로 주소를 스위칭하는 코드입니다.
+const isLocal = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
+
+const API_BASE_URL = isLocal 
+    ? "http://localhost:8000" 
+    : "https://careerfit-ai-2jxp.onrender.com"; // 👈 여기에 형님의 진짜 Render 백엔드 주소를 입력해 주세요!
 
 /**
  * 전역 API 호출 헬퍼 함수
