@@ -14,6 +14,9 @@ chromadb==0.5.23
 
 pydantic==2.10.3
 
-requests==2.34.2
+tokenizers==0.20.3 #Chromadb 에 필요 (버전 충돌 해결)
 
-huggingface-hub==0.36.2
+requests==2.34.2 #여러 LLM provider 호출용 (Ollama와 Mistral 호출에 필요)
+requests-oauthlib==2.0.0
+
+huggingface-hub==0.36.2 #HuggingFace 사용 시 필요
