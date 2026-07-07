@@ -11,11 +11,23 @@ app = FastAPI(
     version="0.1.0",
 )
 
+# CORS 동적 환경 변수 처리 고도화
+raw_origins = as.genetv("FONTEND_ORIGINS", "")
+if raw_origins:
+    allowed_origins = [origin.strip() for origin in raw_origins.split(",") if origin.strip()]
+else:
+    allowed_origins = [
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+        "http://localhost:3000",
+        "http://127.0.0.1:3000"
+    ]
+
 # CORS 설정: React 프론트엔드(localhost:5173)의 요청을 허용한다
 # 요리 비유: 다른 건물(프론트엔드)에서 오는 배달 요청을 허용하는 설정
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=allowed_origins, #["http://localhost:5173"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
