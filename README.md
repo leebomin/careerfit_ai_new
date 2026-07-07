@@ -1,130 +1,176 @@
-### careerfit_ai_new
-
 # CareerFit AI
 
 > 취업·공모전 데이터 기반 맞춤형 AI 포트폴리오 코치
 
 ## 프로젝트 개요
-사용자의 개인 활동 이력과 실제 채용 공고 및 공모전 요구사항 간의 **적합성**을 분석하여, 데이터 기반의 맞춤형 포트폴리오 전략을 제시하는 AI 서비스입니다. 
+
+취업 준비생과 공모전 지원자는 자신의 전공·스킬이 실제 채용 공고에서 요구하는 역량과 얼마나 부합하는지 판단하기 어렵고, 막연히 스펙만 쌓는 데 시간을 쓰는 경우가 많습니다. **CareerFit AI**는 사용자가 입력한 전공·보유 스킬·희망 직무를 실제 채용 공고 및 공모전 데이터와 매칭하여, 부족한 역량과 보완 방향을 참고 공고(출처)와 함께 제시하는 AI 코칭 서비스입니다.
+
+이를 위해 채용 공고 데이터를 벡터 DB(ChromaDB)에 저장하고, 사용자 입력과 의미적으로 유사한 공고를 검색(RAG)한 뒤 Gemini 모델이 검색된 공고를 근거로 맞춤형 분석 답변을 생성하는 구조로 구현했습니다.
 
 ## 기술 스택
 
 | 영역 | 기술 |
 |---|---|
-| 백엔드 | Python, FastAPI |
+| 백엔드 | Python 3.11, FastAPI |
 | AI API | Gemini 2.5 Flash-Lite |
 | 데이터 | Pandas, SQLite, ChromaDB |
 | 프론트엔드 | React, Vite |
 | 실행 환경 | Docker |
+| 배포 | Render (Docker 기반) |
 
-## 서비스 실행 방법
+## 아키텍처
 
-### 💻 프론트엔드 (Frontend)
-```bash
-cd frontend
-npm install
-npm run dev
-```
-- **접속 주소:** http://localhost:5173
-
-### ⚙️ 백엔드 (Backend)
-```bash
-# 가상환경 활성화 후 서버 실행
-uvicorn main:app --host 0.0.0.0 --port 8000 --reload
-```
-- **API 문서 대시보드:** http://localhost:8000/docs
-
-## 주요 기능 구현 현황
-
-- [x] **역량 분석 입력 폼 (`InputForm.jsx`)**
-  - 전공, 보유 스킬(쉼표 구분), 관심 직무 입력 필드 구현
-  - 모든 필드 입력 완료 시에만 분석 버튼이 활성화되는 유효성 검사 로직 적용
-  - 분석 요청 중 버튼 비활성화 및 로딩 애니메이션 피드백 제공
-
-- [x] **RAG 기반 AI 분석 결과 카드 (`ResultCard.jsx`)**
-  - AI 분석 답변 본문 출력 (`whitespace-pre-line` 가독성 확보)
-  - 분석 신뢰도(`confidence`) 레벨에 따른 가변 컬러 하이라이트 시스템 (Amber/Blue)
-  - 데이터 기반 매칭된 핵심 역량 및 보완 필요 스킬 세부 그리드 레이아웃 시각화
-  - 역량 강화를 위한 추천 프로젝트 리스트업 기능
-
-- [x] **출처 공고 카드 (`SourceCard.jsx`)**
-  - 분석의 확실한 근거가 되는 참고 공고 출처 리스트 바인딩
-  - 채용/공모전 성격을 즉각 식별할 수 있는 공고 유형 뱃지(`type`) 시스템
-  - 매칭 사유(`matched_reason`)를 시각적으로 분리한 매칭 근거 텍스트 박스 제공
-
-- [x] **UI 상태 처리 규칙 (State Handling) 예외 처리**
-  - `empty`: 분석 전 메인 화면 가이드 안내 문구 출력
-  - `loading`: 분석 진행 중 상태 피드백 화면 제공
-  - `success`: 결과 표시 성공 및 데이터 바인딩
-  - `error`: API 통신 실패 시 Red 계열의 에러 경고 가이드 노출
-  - `no sources`: 일치하는 공고가 없을 때 숨기지 않고 명확하게 데이터 미존재 안내 처리
-
-## 데이터 파이프라인
-
-데이터 분석 직무에 맞게 데이터를 수집하고, 전처리하여 RAG 기반 검색을 위해 구조화하는 파이프라인입니다.
-
-| 단계 | 도구 | 설명 |
-| --- | --- | --- |
-| 수집 | CSV | 강사 제공 목업 데이터 + 개인화 데이터 |
-| 전처리 | Pandas | 결측치 처리, 중복 데이터 제거, 기술 스택(Skills) 명칭 표준화 |
-| 구조화 저장 | SQLite | 조건부 필터링 및 조회를 위한 관계형 데이터베이스(RDB) 적재 |
-| 벡터 저장 | ChromaDB | 의미 기반 검색(RAG)을 위한 텍스트 임베딩 및 벡터 데이터베이스 적재 |
-
-### 데이터 전처리 실행 방법
-
-데이터베이스 구축 전 원시 데이터(CSV)를 가공하기 위한 명령어입니다. 프로젝트 백엔드 디렉토리에서 실행합니다.
-
-**MacOS**
-```bash
-source venv/bin/activate
-python3 data/preprocess.py
+```mermaid
+flowchart LR
+ subgraph Client["클라이언트"]
+   A["React UI<br/>(Vite Build)"]
+ end
+ subgraph Render["Render (Docker 배포)"]
+   B["FastAPI 백엔드"]
+   C[("ChromaDB<br/>벡터 검색")]
+   D[("SQLite<br/>구조화 데이터")]
+ end
+ subgraph External["외부 AI API"]
+   E["Gemini 2.5<br/>Flash-Lite"]
+ end
+ A -->|"POST /analyze"| B
+ B --> D
+ B --> C
+ C -->|"관련 공고 N개"| B
+ B -->|"프롬프트 + 컨텍스트"| E
+ E -->|"answer + confidence"| B
+ B -->|"JSON 응답"| A
 ```
 
-**Windows**
+## 실행 방법
+
+### 1. 백엔드 (FastAPI)
+
 ```bash
-venv\Scripts\activate
+cd backend
+python -m venv venv
+source venv/bin/activate   # Windows: venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+`backend/.env.example`을 복사해 `.env` 생성 후 `GEMINI_API_KEY`, `FRONTEND_ORIGINS` 값을 입력합니다.
+
+데이터 전처리 (최초 1회 필요):
+```bash
 python data/preprocess.py
 ```
 
-## 진행 현황
+서버 실행:
+```bash
+uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+```
 
-- [x] **1일차: 프로젝트 기획 및 개발 환경 세팅**
-- [x] **2일차: FastAPI 서버 구축 및 Gemini API 연결**
-  - FastAPI `/health`, `/jobs`, `/analyze` 엔드포인트 구현
-  - Python 개발 환경 설정 및 백엔드 구조 구축
-  - Gemini 2.5 Flash-Lite API 연결
-  - 환경변수 기반 mock mode 설정
+- API 문서: http://localhost:8000/docs
 
-- [x] **3일차: 데이터 파이프라인 구축 및 프로젝트 구조화**
-  - 데이터 전처리 스크립트(`preprocess.py`) 작성 및 로직 수정
-  - 취업 및 공모전 분석용 데이터 구조 설계 (`jobs.csv` 구성)
-  - Gemini 모델 프롬프트 예시 수정 및 API 호출 테스트 완료
-  - 전체 서비스 폴더 및 기본 디렉토리 구조 확립
-
-- [x] **4일차: RAG 기반 서비스 + React UI**
-  - ChromaDB 문서 검색 기반의 RAG 서비스 파이프라인 구축 (`rag_service.py`)
-  - Gemini RAG 컨텍스트 결합 프롬프트 가공 및 답변 생성 로직 연동 (`llm_service.py`)
-  - 프론트엔드 React + Vite 독립 프로젝트 빌드 및 환경 구성
-  - UI 디자인 지침서 문서화 및 예외 처리 가이드 수립 (`design-skill.md`)
-  - UI 상태 처리(empty, loading, success, error, no sources)를 고려한 아키텍처 구현 (`App.jsx`)
-  - 텍스트 레이블 및 레이아웃을 고도화한 `InputForm`, `ResultCard`, `SourceCard` 핵심 컴포넌트 자가 검수 및 제작 완료
-  - `fetch` API를 이용한 크로스 도메인(CORS) 대응 및 프론트-백엔드 `/analyze` 데이터 송수신 확인 완료
-
-- [ ] **5일차: Docker + 포트폴리오 완성**
-
-## Git 커밋 및 배포 기록
-
-오늘 최종 구현된 코드는 아래 규격에 맞추어 안정적으로 형상 관리에 반영되었습니다.
+### 2. 프론트엔드 (React/Vite)
 
 ```bash
-git add .
-git commit -m "feat: RAG 기반 /analyze API 및 React UI 구현
-
-- ChromaDB 문서 검색 (rag_service.py)
-- Gemini RAG 연결 답변 생성 (llm_service.py)
-- React + Vite 프로젝트 생성
-- InputForm, ResultCard, SourceCard 컴포넌트
-- fetch로 /analyze API 연결
-- design-skill.md 작성"
-git push
+cd frontend
+npm install
 ```
+
+`frontend/.env.example`을 복사해 `.env` 생성 후 `VITE_API_BASE_URL=http://localhost:8000` 입력.
+
+```bash
+npm run dev
+```
+
+- 접속 주소: http://localhost:5173
+
+### 3. Docker로 백엔드 실행 (선택)
+
+```bash
+docker build -t careerfit-ai ./backend
+docker run -p 8000:8000 --env-file backend/.env careerfit-ai
+```
+
+## 주요 기능
+
+- **RAG 기반 역량 분석**: 사용자 입력(전공·스킬·희망 직무)과 실제 채용 공고 데이터를 벡터 검색으로 매칭하여 맞춤형 분석 답변 생성
+- **출처 표시**: 분석에 참고한 공고를 `sources`로 함께 반환하여 근거를 투명하게 노출
+- **신뢰도 표시**: 분석 결과의 신뢰도(`confidence`)를 색상으로 구분해 시각적으로 안내
+- **Mock Mode**: `MOCK_MODE=true` 환경변수로 Gemini API 호출 없이 목업 응답을 반환하는 폴백 모드 [실제 동작 확인 후 유지/삭제]
+- **UI 상태 처리**: empty / loading / success / error / no-sources 5가지 상태를 모두 명시적으로 처리
+
+## 데이터 파이프라인
+
+```
+CSV → Pandas 전처리 → SQLite (구조화 저장) → ChromaDB (벡터 검색)
+```
+
+| 단계 | 도구 | 설명 |
+|---|---|---|
+| 수집 | CSV | 제공 목업 데이터 + 개인화 데이터 |
+| 전처리 | Pandas | 결측치 처리, 중복 제거, 기술 스택(Skills) 명칭 표준화 |
+| 구조화 저장 | SQLite | 조건부 필터링·조회를 위한 관계형 DB 적재 |
+| 벡터 저장 | ChromaDB | 의미 기반 검색(RAG)을 위한 텍스트 임베딩 적재 |
+
+## 프로젝트 구조
+
+```
+careerfit-ai/
+├── backend/          # FastAPI 서버
+│   ├── main.py
+│   ├── routers/
+│   ├── services/
+│   ├── data/
+│   └── Dockerfile
+├── frontend/         # React UI
+│   ├── src/
+│   └── Dockerfile
+└── docs/             # 배포·설계 문서
+```
+
+## 한계 및 향후 검증 계획
+
+현재까지는 기능 단위 수동 테스트로 동작을 확인했으며, 정량적인 응답 품질 평가는 진행하지 않았습니다.
+
+- [ ] RAG 검색 품질 평가 (Ragas 등 지표 도입)
+- [ ] 매칭 정확도에 대한 정성 평가 (샘플 케이스 기준)
+- [ ] 응답 지연시간 측정
+
+## 진행 현황
+
+- [x] 1일차: 프로젝트 기획 및 개발 환경 세팅
+- [x] 2일차: FastAPI 서버 구축 및 Gemini API 연결
+  - `/health`, `/jobs`, `/analyze` 엔드포인트 구현
+  - 환경변수 기반 Mock Mode 설정
+- [x] 3일차: 데이터 파이프라인 구축 및 프로젝트 구조화
+  - `preprocess.py` 작성, `jobs.csv` 구성
+  - Gemini 프롬프트 설계 및 API 호출 테스트
+- [x] 4일차: RAG 기반 서비스 + React UI
+  - ChromaDB 검색 기반 RAG 파이프라인 구축 (`rag_service.py`)
+  - Gemini 컨텍스트 결합 프롬프트 및 답변 생성 로직 (`llm_service.py`)
+  - React + Vite 프론트엔드 구현 (`InputForm`, `ResultCard`, `SourceCard`)
+  - UI 상태 처리(empty/loading/success/error/no-sources) 구현
+- [x] 5일차: Docker 배포 안정화 및 포트폴리오 완성
+  - [x] 백엔드 Docker 배포 (Render)
+  - [x] 프론트엔드 Docker 배포 (Render) — 환경변수 기반 API 주소 연동 확인 중
+
+## 🔮 향후 개선
+
+- [ ] 이력서 PDF 업로드 후 자동 역량 추출
+- [ ] 공모전 마감일 알림 기능
+- [ ] RAG 검색 품질 평가 지표 추가 (Ragas 등)
+
+## 개발 과정에서 어려웠던 점
+프론트엔드 배포 후 API 주소가 로컬로 하드코딩되어 있던 문제를 환경변수(`VITE_API_BASE_URL`) 기반으로 전환하여 해결한 것.
+
+---
+
+## Demo
+
+- Live Demo: https://careerfit-ai-frontend-wp67.onrender.com/
+
+## Developer
+
+- Name: Bomin Lee
+- Role: University Student (Urban Administration/Statistics)
+- GitHub: @leebomin
+- Email: ibomin88@gmail.com
